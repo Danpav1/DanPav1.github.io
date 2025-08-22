@@ -1,6 +1,389 @@
 @import "tailwindcss";
 
+/* Custom CSS variables for theme control */
+:root {
+  --theme-mode: light;
+}
+
+:root[data-theme="dark"] {
+  --theme-mode: dark;
+}
+
+/* Override Tailwind's media queries with our custom theme data attribute */
+:root[data-theme="dark"] .bg-gray-100 {
+  background-color: rgb(17 24 39) !important; /* gray-900 equivalent */
+}
+
+:root[data-theme="dark"] .bg-gray-900 {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+:root[data-theme="dark"] .text-gray-900 {
+  color: rgb(243 244 246) !important; /* gray-100 equivalent */
+}
+
+:root[data-theme="dark"] .text-gray-100 {
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+:root[data-theme="dark"] .text-gray-950 {
+  color: rgb(229 231 235) !important; /* gray-200 equivalent */
+}
+
+:root[data-theme="dark"] .text-gray-200 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+:root[data-theme="dark"] .border-gray-600 {
+  border-color: rgb(75 85 99) !important; /* gray-600 */
+}
+
+:root[data-theme="dark"] .border-gray-700 {
+  border-color: rgb(55 65 81) !important; /* gray-700 */
+}
+
+:root[data-theme="dark"] .hover\:text-blue-400:hover {
+  color: rgb(96 165 250) !important; /* blue-400 */
+}
+
+:root[data-theme="dark"] .hover\:text-blue-600:hover {
+  color: rgb(37 99 235) !important; /* blue-600 */
+}
+
+/* Dark mode project card styling */
+:root[data-theme="dark"] .bg-white {
+  background-color: rgb(31 41 55) !important; /* gray-800 for cards */
+}
+
+:root[data-theme="dark"] .text-gray-600 {
+  color: rgb(156 163 175) !important; /* gray-400 */
+}
+
+:root[data-theme="dark"] .text-gray-700 {
+  color: rgb(209 213 219) !important; /* gray-300 */
+}
+
+:root[data-theme="dark"] .text-gray-800 {
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+/* Dark mode date bubbles for experience */
+:root[data-theme="dark"] .bg-blue-100 {
+  background-color: rgb(30 58 138) !important; /* blue-900 */
+}
+
+:root[data-theme="dark"] .text-blue-900 {
+  color: rgb(147 197 253) !important; /* blue-300 */
+}
+
+:root[data-theme="dark"] .bg-green-100 {
+  background-color: rgb(20 83 45) !important; /* green-900 */
+}
+
+:root[data-theme="dark"] .text-green-900 {
+  color: rgb(134 239 172) !important; /* green-300 */
+}
+
+/* Light mode overrides (to ensure light mode works when data-theme="light") */
+:root[data-theme="light"] .bg-gray-100 {
+  background-color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+:root[data-theme="light"] .bg-gray-900 {
+  background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+:root[data-theme="light"] .text-gray-900 {
+  color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+:root[data-theme="light"] .text-gray-100 {
+  color: rgb(243 244 246) !important; /* gray-100 */
+}
+
+:root[data-theme="light"] .text-gray-950 {
+  color: rgb(3 7 18) !important; /* gray-950 */
+}
+
+:root[data-theme="light"] .text-gray-200 {
+  color: rgb(229 231 235) !important; /* gray-200 */
+}
+
+/* Light mode project card styling */
+:root[data-theme="light"] .bg-white {
+  background-color: rgb(255 255 255) !important; /* white for cards */
+}
+
+:root[data-theme="light"] .text-gray-600 {
+  color: rgb(75 85 99) !important; /* gray-600 */
+}
+
+:root[data-theme="light"] .text-gray-700 {
+  color: rgb(55 65 81) !important; /* gray-700 */
+}
+
+:root[data-theme="light"] .text-gray-800 {
+  color: rgb(31 41 55) !important; /* gray-800 */
+}
+
+/* Light mode date bubbles for experience */
+:root[data-theme="light"] .bg-blue-100 {
+  background-color: rgb(219 234 254) !important; /* blue-100 */
+}
+
+:root[data-theme="light"] .text-blue-900 {
+  color: rgb(30 58 138) !important; /* blue-900 */
+}
+
+:root[data-theme="light"] .bg-green-100 {
+  background-color: rgb(220 252 231) !important; /* green-100 */
+}
+
+:root[data-theme="light"] .text-green-900 {
+  color: rgb(20 83 45) !important; /* green-900 */
+}
+
+/* Navbar highlighting - light blue for light mode, blue for dark mode */
+:root[data-theme="light"] .text-sky-600 {
+  color: rgb(2 132 199) !important; /* sky-600 - light blue for light mode */
+}
+
+:root[data-theme="light"] .text-blue-500 {
+  color: rgb(2 132 199) !important; /* sky-600 - light blue for light mode */
+}
+
+:root[data-theme="dark"] .text-sky-600 {
+  color: rgb(59 130 246) !important; /* blue-500 - blue for dark mode */
+}
+
+:root[data-theme="dark"] .text-blue-500 {
+  color: rgb(59 130 246) !important; /* blue-500 - blue for dark mode */
+}
+
+/* Hover states for navbar */
+:root[data-theme="light"] .hover\:text-sky-600:hover {
+  color: rgb(2 132 199) !important; /* sky-600 */
+}
+
+:root[data-theme="dark"] .hover\:text-sky-400:hover {
+  color: rgb(59 130 246) !important; /* blue-500 */
+}
+
+/* Default text colors for navbar items */
+:root[data-theme="light"] .text-stone-900 {
+  color: rgb(28 25 23) !important; /* stone-900 */
+}
+
+:root[data-theme="dark"] .text-stone-400 {
+  color: rgb(168 162 158) !important; /* stone-400 */
+}
+
+/* Project card skill chips - enhanced colors for light mode */
+:root[data-theme="light"] .bg-blue-100 {
+  background-color: rgb(147 197 253) !important; /* blue-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-blue-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-blue-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-green-100 {
+  background-color: rgb(134 239 172) !important; /* green-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-green-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-green-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-purple-100 {
+  background-color: rgb(196 181 253) !important; /* purple-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-purple-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-purple-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-yellow-100 {
+  background-color: rgb(254 240 138) !important; /* yellow-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-yellow-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-yellow-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-red-100 {
+  background-color: rgb(252 165 165) !important; /* red-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-red-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-red-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-indigo-100 {
+  background-color: rgb(165 180 252) !important; /* indigo-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-indigo-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-indigo-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-pink-100 {
+  background-color: rgb(249 168 212) !important; /* pink-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-pink-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-pink-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .bg-teal-100 {
+  background-color: rgb(153 246 228) !important; /* teal-300 - more vibrant */
+}
+
+:root[data-theme="light"] .text-teal-800 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+:root[data-theme="light"] .text-teal-900 {
+  color: #ffffff !important; /* pure white using hex for maximum brightness */
+  opacity: 1 !important; /* ensure no transparency */
+  font-weight: 600 !important; /* make text bolder and more solid */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important; /* stronger shadow for better definition */
+}
+
+/* Experience date bubbles - light gray with black text for light mode */
+:root[data-theme="light"] .experience-date {
+  background-color: rgb(243 244 246) !important; /* gray-100 - very light gray */
+  color: rgb(0 0 0) !important; /* black text */
+  border: 1px solid rgb(209 213 219) !important; /* gray-300 border for definition */
+}
+
+/* Target the specific date bubble spans in experience section */
+:root[data-theme="light"] span.bg-gray-300.rounded-full {
+  background-color: rgb(243 244 246) !important; /* gray-100 - very light gray */
+  border: 1px solid rgb(209 213 219) !important; /* gray-300 border for definition */
+}
+
+:root[data-theme="light"] span.text-gray-600.bg-gray-300 {
+  color: rgb(0 0 0) !important; /* black text for date bubbles only */
+}
+
 /* Custom card muted state styling */
 .card-muted {
     opacity: 0.6 !important;
+}
+
+/* Experience and Skills card hover effects - smaller scale */
+.experience-card:hover,
+.skill-card:hover {
+    transform: scale(1.02) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Project card hover effects - ultra smooth transitions */
+.project-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.project-card:hover {
+    transform: scale(1.05) !important;
+}
+
+/* Project card overlay - smooth appearance */
+.project-overlay {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Disabled overlay for middle card - no background change */
+.project-overlay-disabled {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.project-card:hover .project-overlay-disabled {
+    opacity: 1 !important;
+    background-color: transparent !important;
+}
+
+/* View code button - no background color change */
+.view-code-btn:hover {
+    background-color: transparent !important;
+    transform: translateY(-1px);
+    transition: all 0.3s ease !important;
 }

@@ -32,17 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to apply theme
+    // Function to apply theme using data-theme attribute
     function applyTheme(theme) {
+        console.log('Applying theme:', theme); // Debug log
+        html.setAttribute('data-theme', theme);
+        
         if (theme === 'dark') {
-            html.classList.add('dark');
             updateToggleButton(true);
             updateHeadshot(true);
+            console.log('Dark mode applied via data-theme attribute'); // Debug log
         } else {
-            html.classList.remove('dark');
             updateToggleButton(false);
             updateHeadshot(false);
+            console.log('Light mode applied via data-theme attribute'); // Debug log
         }
+    }
+
+    // Check current system preference
+    function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
     // Initialize theme based on saved preference or system preference
@@ -54,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initialTheme = savedTheme;
     } else {
         // No saved preference, use system preference
-        initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        initialTheme = getSystemTheme();
     }
 
     applyTheme(initialTheme);
@@ -70,8 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manual toggle
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const currentlyDark = html.classList.contains('dark');
-            const newTheme = currentlyDark ? 'light' : 'dark';
+            const currentTheme = html.getAttribute('data-theme') || getSystemTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             // Save the manual preference
             localStorage.setItem('theme', newTheme);
@@ -80,16 +88,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links - center viewport on section center
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Calculate the center of the section
+                const targetRect = target.getBoundingClientRect();
+                const targetCenter = targetRect.top + window.pageYOffset + (targetRect.height / 2);
+                
+                // Calculate scroll position to center the section in viewport
+                const viewportHeight = window.innerHeight;
+                const scrollToPosition = targetCenter - (viewportHeight / 2);
+                
+                // Smooth scroll to the calculated position
+                window.scrollTo({
+                    top: Math.max(0, scrollToPosition), // Ensure we don't scroll above page top
+                    behavior: 'smooth'
                 });
             }
         });
@@ -223,7 +240,7 @@ function updateActiveSection() {
         }
         
         // Reset colors
-        link.classList.remove('text-blue-600', 'dark:text-blue-400');
+        link.classList.remove('text-sky-600', 'text-blue-500', 'dark:text-sky-400', 'dark:text-blue-500');
         link.classList.add('text-stone-900', 'dark:text-stone-400');
         
         // Apply transforms and opacity with optimized transitions
@@ -235,7 +252,7 @@ function updateActiveSection() {
         // Active section gets blue color and bold weight
         if (linkId === currentDominantSection) {
             link.classList.remove('text-stone-900', 'dark:text-stone-400');
-            link.classList.add('text-blue-600', 'dark:text-blue-400');
+            link.classList.add('text-sky-600', 'text-blue-500'); // Use blue-500 for both modes, CSS will override
             link.style.fontWeight = '700';
         }
     });

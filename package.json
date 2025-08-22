@@ -4,11 +4,12 @@
   "description": "Personal portfolio project that uses Tailwind CSS",
   "main": "docs/index.html",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i docs/styles/main.css -o docs/styles/styles.css",
-    "watch": "npx @tailwindcss/cli -i docs/styles/main.css -o docs/styles/styles.css --watch"
+    "build": "postcss docs/styles/main.css -o docs/styles/styles.css",
+    "watch": "postcss docs/styles/main.css -o docs/styles/styles.css --watch"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
+    "@tailwindcss/postcss": "^4.1.12",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
