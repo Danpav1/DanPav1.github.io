@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom card muted state styling */
+.card-muted {
+    opacity: 0.6 !important;
+}
