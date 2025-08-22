@@ -3,15 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Project</title>
+    <title>Daniel Pavenko - Portfolio</title>
     <link href="../dist/styles.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800">
-    <header class="p-4 bg-blue-500 text-white">
-        <h1 class="text-2xl text-blue-100">Hello world</h1>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Clear Header with Theme Toggle -->
+    <header class="fixed top-0 w-full z-50">
+        <div class="flex justify-end p-6">
+            <!-- Dark Mode Toggle -->
+            <button 
+                id="theme-toggle" 
+                class="group"
+            >
+                <!-- Sun Icon (Light Mode) - Hollow White -->
+                <svg id="theme-toggle-light" class="hidden w-8 h-8 text-white hover:text-gray-200 transition-colors cursor-pointer drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                
+                <!-- Moon Icon (Dark Mode) - Hollow Dark -->
+                <svg id="theme-toggle-dark" class="w-8 h-8 text-gray-950 hover:text-gray-700 transition-colors cursor-pointer drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+            </button>
+        </div>
     </header>
-    <main class="p-4">
-        <p>This is a simple project using Tailwind CSS.</p>
+
+    <!-- Fixed Navigation Sidebar -->
+    <nav class="fixed left-6 top-1/2 transform -translate-y-1/2 z-40 hidden xl:block">
+        <div class="p-6">
+            <ul>
+                <li>
+                    <a href="#about" class="nav-link block text-sm font-medium text-gray-950 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-3 px-4 rounded-md">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#experience" class="nav-link block text-sm font-medium text-gray-950 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-3 px-4 rounded-md">
+                        Experience
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills" class="nav-link block text-sm font-medium text-gray-950 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-3 px-4 rounded-md">
+                        Skills
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link block text-sm font-medium text-gray-950 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-3 px-4 rounded-md">
+                        Projects
+                    </a>
+                </li>
+                <li>
+                    <a href="#resume" class="nav-link block text-sm font-medium text-gray-950 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 py-3 px-4 rounded-md">
+                        Resume
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Top padding section -->
+        <div class="h-24 bg-gray-100 dark:bg-gray-900 transition-colors duration-300"></div>
+        
+        <section id="headshot" class="py-20 flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-12">
+                    <!-- Headshot Image - Left on desktop, top on mobile -->
+                    <div class="flex-shrink-0">
+                        <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-2xl transition-all duration-300 relative">
+                            <!-- Light mode placeholder -->
+                            <div id="headshot-light" class="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 mx-auto mb-2 bg-white/20 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-white text-xs font-medium">Light Mode</span>
+                                </div>
+                            </div>
+                            <!-- Dark mode placeholder -->
+                            <div id="headshot-dark" class="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center hidden">
+                                <div class="text-center">
+                                    <div class="w-12 h-12 mx-auto mb-2 bg-white/10 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <span class="text-white text-xs font-medium">Dark Mode</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Content - Right on desktop, bottom on mobile -->
+                    <div class="text-center lg:text-left lg:flex-1">
+                        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Daniel Pavenko</h1>
+                        <p class="text-lg lg:text-xl text-gray-950 dark:text-gray-200 leading-relaxed transition-colors duration-300">Full-stack developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-950 dark:text-gray-200 mr-6 whitespace-nowrap transition-colors duration-300">About Me</h2>
+                    <div class="flex-1 h-px bg-gray-950 dark:bg-gray-100 transition-colors duration-300"></div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-900 rounded-lg p-8 transition-colors duration-300">
+                    <p class="text-gray-950 dark:text-gray-200 text-center transition-colors duration-300">
+                        I'm Dan, I live in Pennsylvania. I am currently a senior attending Shippensburg University with a GPA of 3.725 and a graduation date of Dec 2025.
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-950 dark:text-gray-200 mr-6 whitespace-nowrap transition-colors duration-300">Experience</h2>
+                    <div class="flex-1 h-px bg-gray-950 dark:bg-gray-100 transition-colors duration-300"></div>
+                </div>
+                <div class="space-y-8">
+                    <!-- Position 1: GDC IT -->
+                    <div class="experience-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-950 dark:text-white transition-colors duration-300 mb-1 md:mb-0">Application Development Intern</h3>
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 bg-gray-300 dark:bg-gray-800 px-3 py-1 rounded-full transition-colors duration-300 md:text-right whitespace-nowrap">May 2025 - Present</span>
+                        </div>
+                        <p class="text-xl font-semibold text-blue-600 dark:text-blue-400 transition-colors duration-300 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            GDC IT
+                        </p>
+                        <ul class="text-gray-800 dark:text-gray-300 transition-colors duration-300 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Participated in <span class="font-semibold text-gray-950 dark:text-white">scrum meetings</span> and collaborated through <span class="font-semibold text-blue-600 dark:text-blue-400">Azure DevOps</span> in an Agile team environment.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Contributed to a full-stack <span class="font-semibold text-gray-950 dark:text-white">SaaS project</span>, building features with <span class="font-semibold text-blue-600 dark:text-blue-400">React</span> (frontend) and <span class="font-semibold text-blue-600 dark:text-blue-400">C#</span> (backend).</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Wrote and optimized <span class="font-semibold text-blue-600 dark:text-blue-400">LINQ queries</span> for efficient database interactions.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Position 2: Cinteot -->
+                    <div class="experience-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-950 dark:text-white transition-colors duration-300 mb-1 md:mb-0">Associate Software Engineer</h3>
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 bg-gray-300 dark:bg-gray-800 px-3 py-1 rounded-full transition-colors duration-300 md:text-right whitespace-nowrap">May 2025 - Present</span>
+                        </div>
+                        <p class="text-xl font-semibold text-blue-600 dark:text-blue-400 transition-colors duration-300 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            Cinteot
+                        </p>
+                        <ul class="text-gray-800 dark:text-gray-300 transition-colors duration-300 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Created a <span class="font-semibold text-blue-600 dark:text-blue-400">Docker container</span> for a SMTP server using <span class="font-semibold text-gray-950 dark:text-white">Ubuntu Server</span> and <span class="font-semibold text-blue-600 dark:text-blue-400">Postman</span>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Contributed to an internal project that used <span class="font-semibold text-blue-600 dark:text-blue-400">Ollama</span> with <span class="font-semibold text-blue-600 dark:text-blue-400">Python</span> for the backend and <span class="font-semibold text-gray-950 dark:text-white">HTML, CSS, and JavaScript</span> for the frontend.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Worked in an <span class="font-semibold text-gray-950 dark:text-white">Agile environment</span> with team collaboration and regular scrum meetings.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Position 3: Schreiber Foods -->
+                    <div class="experience-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <h3 class="text-2xl font-bold text-gray-950 dark:text-white transition-colors duration-300 mb-1 md:mb-0">ITTPS Intern</h3>
+                            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 bg-gray-300 dark:bg-gray-800 px-3 py-1 rounded-full transition-colors duration-300 md:text-right whitespace-nowrap">Aug 2023 - May 2025</span>
+                        </div>
+                        <p class="text-xl font-semibold text-blue-600 dark:text-blue-400 transition-colors duration-300 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            Schreiber Foods
+                        </p>
+                        <ul class="text-gray-800 dark:text-gray-300 transition-colors duration-300 space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Deployed and configured <span class="font-semibold text-gray-950 dark:text-white">enterprise hardware</span> while ensuring <span class="font-semibold text-blue-600 dark:text-blue-400">99.9% uptime</span> for <span class="font-semibold text-gray-950 dark:text-white">600+ employees</span>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Used <span class="font-semibold text-blue-600 dark:text-blue-400">Active Directory</span> to manage user accounts, machines, and access permissions across the network.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1 text-lg">▸</span>
+                                <span class="leading-relaxed">Installed and terminated <span class="font-semibold text-gray-950 dark:text-white">Ethernet runs</span>, deployed switches, and maintained <span class="font-semibold text-blue-600 dark:text-blue-400">network infrastructure</span>.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hidden div to ensure essential classes are included -->
+        <div class="hidden text-blue-500 bg-blue-500 ring-blue-500 ring-opacity-50 bg-gray-100 bg-gray-800 bg-gray-900 dark:bg-gray-800 dark:bg-gray-900 dark:text-gray-100 dark:text-gray-400 dark:border-gray-600 dark:border-gray-700"></div>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-950 dark:text-gray-200 mr-6 whitespace-nowrap transition-colors duration-300">Skills</h2>
+                    <div class="flex-1 h-px bg-gray-950 dark:bg-gray-100 transition-colors duration-300"></div>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- Languages Card -->
+                    <div class="skill-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500 opacity-60">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 mr-3 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                            <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400 transition-colors duration-300">Languages</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Python</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Java</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">C</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">C#</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">JavaScript</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">SQL</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Bash</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">HTML</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">CSS</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">LaTeX</span>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks & Libraries Card -->
+                    <div class="skill-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500 opacity-60">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 mr-3 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                            <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400 transition-colors duration-300">Frameworks & Libraries</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">React</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Node.js</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Express</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Tailwind CSS</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Bootstrap</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Axios</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Sequelize</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Swing</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Flask</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">ASP.NET</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">.NET</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Technologies Card -->
+                    <div class="skill-card bg-gray-100 dark:bg-gray-900 rounded-lg p-6 shadow-lg border border-gray-300 dark:border-gray-700 transform transition-all duration-500 opacity-60">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 mr-3 text-gray-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <h3 class="text-xl font-bold text-gray-600 dark:text-gray-400 transition-colors duration-300">Tools & Technologies</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Git</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Docker</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">NPM</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">VS Code</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">IntelliJ</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Vite</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Eclipse</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">CLion</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Linux/Unix</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">RegEx</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Valgrind</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">PyCharm</span>
+                            <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300">Vim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-950 dark:text-gray-200 mr-6 whitespace-nowrap transition-colors duration-300">Projects</h2>
+                    <div class="flex-1 h-px bg-gray-950 dark:bg-gray-100 transition-colors duration-300"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1: DBMS Simulator -->
+                    <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl opacity-90 hover:opacity-100">
+                        <div class="relative overflow-hidden">
+                            <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                                <div class="flex space-x-4">
+                                    <a href="https://github.com/Danpav1/DBMS_Prog_1" target="_blank" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                                        View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-950 dark:text-white mb-2 transition-colors duration-300">DBMS Simulator</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed transition-colors duration-300">
+                                Designed and developed a simple DBMS simulator for CRUD operations via CLI. Implemented file I/O operations and custom formatting logic for structured records.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">Python</span>
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">File I/O</span>
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">CLI</span>
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">Git</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                2025
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: DB CRUD App -->
+                    <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 overflow-hidden transform transition-all duration-500 opacity-75">
+                        <div class="relative overflow-hidden">
+                            <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                                <div class="flex space-x-4">
+                                    <button class="bg-gray-400 text-gray-600 px-4 py-2 rounded-lg font-medium cursor-not-allowed opacity-60" disabled>
+                                        <span class="flex items-center">
+                                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728"></path>
+                                            </svg>
+                                            Code Unavailable
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-950 dark:text-white mb-2 transition-colors duration-300">DB CRUD App</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed transition-colors duration-300">
+                                Developed a CRUD app to manage "abilities" in a MySQL database using Python and Tkinter. Implemented MVC architecture with seamless remote database connectivity.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">Python</span>
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">MySQL</span>
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">Tkinter</span>
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">MVC</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                2025
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Web Development Project -->
+                    <div class="project-card bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl opacity-90 hover:opacity-100">
+                        <div class="relative overflow-hidden">
+                            <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                                <div class="flex space-x-4">
+                                    <a href="https://github.com/Danpav1/login_website" target="_blank" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                                        View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-950 dark:text-white mb-2 transition-colors duration-300">Web Development Project</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed transition-colors duration-300">
+                                Built a full-stack auth system with JWT, bcryptjs, OTP email verification, and password recovery. Responsive frontend with React and scalable Node.js backend.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">React</span>
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">Node.js</span>
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">JWT</span>
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300">SQLite</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                2025
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="py-20 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-6xl mx-auto px-12 lg:px-20">
+                <div class="flex items-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-950 dark:text-gray-200 mr-6 whitespace-nowrap transition-colors duration-300">Resume</h2>
+                    <div class="flex-1 h-px bg-gray-950 dark:bg-gray-100 transition-colors duration-300"></div>
+                </div>
+                <div class="bg-gray-100 dark:bg-gray-900 rounded-lg p-8 text-center transition-colors duration-300">
+                    <p class="text-gray-950 dark:text-gray-200 mb-6 transition-colors duration-300">
+                        Download my resume!
+                    </p>
+                    <a href="./resume.pdf" download="Daniel_Pavenko_Resume.pdf" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg transition-colors duration-300 font-medium">
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bottom padding section -->
+        <div class="h-32 bg-gray-100 dark:bg-gray-900 transition-colors duration-300"></div>
     </main>
+
+    <!-- Clear Footer -->
+    <footer class="py-8 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-12 lg:px-20 text-center">
+            <p class="text-gray-950 dark:text-gray-200 transition-colors duration-300">&copy; 2025 Daniel Pavenko. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
