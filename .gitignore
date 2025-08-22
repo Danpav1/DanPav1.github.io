@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Package lock files
+package-lock.json
+
+# Build outputs
+dist/
+
+# macOS system files
+.DS_Store

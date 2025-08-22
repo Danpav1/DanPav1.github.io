@@ -2,10 +2,10 @@
   "name": "tailwind-project",
   "version": "1.0.0",
   "description": "Personal portfolio project that uses Tailwind CSS",
-  "main": "src/index.html",
+  "main": "docs/index.html",
   "scripts": {
-    "build": "postcss src/styles/main.css -o dist/styles.css",
-    "watch": "postcss src/styles/main.css -o dist/styles.css --watch"
+    "build": "postcss docs/styles/main.css -o docs/styles/styles.css",
+    "watch": "postcss docs/styles/main.css -o docs/styles/styles.css --watch"
   },
   "dependencies": {
     "autoprefixer": "^10.4.2",

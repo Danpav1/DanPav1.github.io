@@ -1,7 +1,7 @@
 module.exports = {
   purge: {
     enabled: true,
-    content: ['./src/**/*.{html,js}'],
+    content: ['./docs/**/*.{html,js}'],
     safelist: [
       // Blue colors for dynamic JavaScript classes and hover states
       'text-blue-500',
