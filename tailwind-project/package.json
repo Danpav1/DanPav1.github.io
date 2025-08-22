@@ -8,11 +8,13 @@
     "watch": "postcss src/styles/main.css -o dist/styles.css --watch"
   },
   "dependencies": {
-    "tailwindcss": "^2.2.19",
+    "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
-    "autoprefixer": "^10.4.2"
+    "tailwindcss": "^2.2.19"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "postcss-cli": "^11.0.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
