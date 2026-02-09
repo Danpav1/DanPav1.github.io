@@ -746,3 +746,26 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Contact form handler (mailto fallback)
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const messageInput = document.getElementById('contact-message');
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!message) {
+            return;
+        }
+
+        const recipient = 'pavenkodanielofficial@hotmail.com';
+        const subject = 'Portfolio Contact';
+        const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+
+        window.location.href = mailtoUrl;
+    });
+});
